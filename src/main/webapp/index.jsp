@@ -9,6 +9,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Mailing List</title>
+
+<style>
+
+</style>
+
 </head>
 <body>
 
