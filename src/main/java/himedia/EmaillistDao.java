@@ -29,17 +29,22 @@ public class EmaillistDao {
 	
 	public List<String[]> getEmailList() {
 		List<String[]> emailList = new ArrayList<>();
-		String sql = "SELECT first_name, last_name, email FROM email_list";
+		String sql = "SELECT id, first_name, last_name, email FROM email_list";
 		
-		try (
-			Connection conn = getConnection();
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sql)) {
+		Connection conn = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql); 
 			while (rs.next()) {
-				String[] entry = new String[3];
-				entry[0] = rs.getString("first_name");
-				entry[1] = rs.getString("last_name");
-				entry[2] = rs.getString("email");
+				String[] entry = new String[4];
+				entry[0] = rs.getString("id");
+				entry[1] = rs.getString("first_name");
+				entry[2] = rs.getString("last_name");
+				entry[3] = rs.getString("email");
 				emailList.add(entry);
 			}
 		}
@@ -48,7 +53,18 @@ public class EmaillistDao {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
-		} 
+		} finally {
+			try {
+				if (conn != null) conn.close();
+				if (stmt != null) stmt.close();
+				if (rs != null) rs.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
 		
 		return emailList;
 	}
@@ -58,8 +74,11 @@ public class EmaillistDao {
 		String sql = "INSERT INTO email_list (first_name, last_name, email) "
 				+ "VALUES(?,?,?)";
 		
-		try {Connection conn = getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		try {conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, firstName);
 			pstmt.setString(2, lastName);
@@ -67,7 +86,17 @@ public class EmaillistDao {
 			pstmt.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
+			} finally {
+				try {
+					if (conn!= null) conn.close();
+					if (pstmt!= null) pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
+		}
 	}
 	
-}
+

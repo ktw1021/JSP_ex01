@@ -11,7 +11,9 @@
 <title>Mailing List</title>
 
 <style>
-
+.num {
+	text-align: center;
+}
 </style>
 
 </head>
@@ -20,6 +22,7 @@
 	<h1>Mailing List</h1>
 	<table border = "1">
 		<tr>
+			<th> No. </th>
 			<th> First Name </th>
 			<th> Last Name </th>
 			<th> Email </th>
@@ -31,9 +34,10 @@
 			
 		%>
 		<tr>
-			<td><%= entry[0] %></td>
+			<td class = "num"><%= entry[0] %></td>
 			<td><%= entry[1] %></td>
 			<td><%= entry[2] %></td>
+			<td><%= entry[3] %></td>
 		</tr>
 		<%
 			}
