@@ -84,8 +84,11 @@ public class EmaillistDao {
 			pstmt.setString(1, firstName);
 			pstmt.setString(2, lastName);
 			pstmt.setString(3, email);
-			pstmt.executeUpdate();
+			pstmt.executeUpdate(); // 영향 받은 레코드 카운트
+			
 			} catch (SQLException e) {
+				e.printStackTrace();
+			} catch (Exception e) {
 				e.printStackTrace();
 			} finally {
 				try {
