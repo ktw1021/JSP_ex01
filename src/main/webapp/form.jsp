@@ -19,6 +19,9 @@
 		<input type="email" id = "email" name = "email" required><br>
 		<input type = "submit" value = "Join">
 	
+	<br>
+	<br>
+	<a href = "<%= request.getContextPath()  %>">Mailing List</a>
 	</form>
 
 </body>

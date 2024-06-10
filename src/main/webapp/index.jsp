@@ -26,6 +26,7 @@
 			<th> First Name </th>
 			<th> Last Name </th>
 			<th> Email </th>
+			<th> Registration Date </th>
 		</tr>
 		<%
 			EmaillistDao dao = new EmaillistDao();
@@ -38,6 +39,7 @@
 			<td><%= entry[1] %></td>
 			<td><%= entry[2] %></td>
 			<td><%= entry[3] %></td>
+			<td><%= entry[4] %></td>
 		</tr>
 		<%
 			}

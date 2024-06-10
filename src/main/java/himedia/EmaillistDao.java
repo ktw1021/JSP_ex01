@@ -29,7 +29,7 @@ public class EmaillistDao {
 	
 	public List<String[]> getEmailList() {
 		List<String[]> emailList = new ArrayList<>();
-		String sql = "SELECT id, first_name, last_name, email FROM email_list";
+		String sql = "SELECT * FROM email_list ORDER BY id";
 		
 		Connection conn = null;
 		Statement stmt = null;
@@ -40,11 +40,12 @@ public class EmaillistDao {
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery(sql); 
 			while (rs.next()) {
-				String[] entry = new String[4];
+				String[] entry = new String[5];
 				entry[0] = rs.getString("id");
 				entry[1] = rs.getString("first_name");
 				entry[2] = rs.getString("last_name");
 				entry[3] = rs.getString("email");
+				entry[4] = rs.getString("registration_date");
 				emailList.add(entry);
 			}
 		}
